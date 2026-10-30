@@ -1,0 +1,19 @@
+# Render blueprint. Free plan has no persistent disk, so data resets on redeploy (fine for a demo).
+# For persistence: change plan to "starter" and uncomment the disk block.
+services:
+  - type: web
+    name: sharelab
+    runtime: docker
+    plan: free
+    healthCheckPath: /healthz
+    envVars:
+      - key: DEMO_PASSWORD
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+    # disk:
+    #   name: sharelab-data
+    #   mountPath: /data
+    #   sizeGB: 1
